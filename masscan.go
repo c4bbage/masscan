@@ -121,6 +121,7 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 			result, err := tools.ParseJson(stdout.Bytes())
 			if err != nil {
 				warnings = append(warnings, err.Error())
+				warnings = append(warnings, stdout.String())
 				return nil, warnings, errors.ErrParseOutput
 			}
 			// Return result, optional warnings but no error
