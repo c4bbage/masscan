@@ -120,6 +120,13 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 		if stdout.Len() > 0 {
 			_stdout := []string{}
 			for _, line := range strings.Split(stdout.String(), "\n") {
+				// Skip empty lines
+				if strings.Contains(line,"forced options") {
+					continue
+				}
+				if strings.Contains(line,"-kpps, "){
+					continue
+				}
 				if strings.Contains(line, "remaining, found") {
 					continue
 				}
@@ -132,6 +139,7 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 				if strings.Contains(line, "Scanning") {
 					continue
 				}
+				if string
 				_stdout = append(_stdout, line)
 			}
 
