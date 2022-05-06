@@ -1,4 +1,4 @@
-module github.com/zan8in/masscan
+module github.com/c4bbage/masscan
 
 go 1.15
 
