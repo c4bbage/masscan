@@ -118,13 +118,13 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 
 		// Parse masscan JSON ouput
 		if stdout.Len() > 0 {
-			_stdout := []string{}
+			var _stdout []string
 			for _, line := range strings.Split(stdout.String(), "\n") {
 				// Skip empty lines
-				if strings.Contains(line,"forced options") {
+				if strings.Contains(line, "forced options") {
 					continue
 				}
-				if strings.Contains(line,"-kpps, "){
+				if strings.Contains(line, "-kpps, ") {
 					continue
 				}
 				if strings.Contains(line, "remaining, found") {
@@ -139,7 +139,6 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 				if strings.Contains(line, "Scanning") {
 					continue
 				}
-				if string
 				_stdout = append(_stdout, line)
 			}
 
