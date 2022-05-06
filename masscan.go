@@ -8,8 +8,8 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/zan8in/masscan/errors"
-	"github.com/zan8in/masscan/tools"
+	"github.com/c4bbage/masscan/errors"
+	"github.com/c4bbage/masscan/tools"
 )
 
 type (
