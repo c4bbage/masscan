@@ -118,7 +118,24 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 
 		// Parse masscan JSON ouput
 		if stdout.Len() > 0 {
-			result, err := tools.ParseJson(stdout.Bytes())
+			_stdout := []string{}
+			for _, line := range strings.Split(stdout.String(), "\n") {
+				if strings.Contains(line, "remaining, found") {
+					continue
+				}
+				if strings.Contains(line, "Initiating") {
+					continue
+				}
+				if strings.Contains(line, "ports/host") {
+					continue
+				}
+				if strings.Contains(line, "Scanning") {
+					continue
+				}
+				_stdout = append(_stdout, line)
+			}
+
+			result, err := tools.ParseJson([]byte(strings.Join(_stdout, "\n")))
 			if err != nil {
 				warnings = append(warnings, err.Error())
 				warnings = append(warnings, stdout.String())
