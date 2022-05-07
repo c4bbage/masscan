@@ -141,6 +141,9 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 				}
 				_stdout = append(_stdout, line)
 			}
+			if s.debug {
+				println("stdout:", stdout.String())
+			}
 
 			result, err := tools.ParseJson([]byte(strings.Join(_stdout, "\n")))
 			if err != nil {
