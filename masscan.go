@@ -117,7 +117,7 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 		}
 
 		// Parse masscan JSON ouput
-		if stdout.Len() > 0 {
+		if stdout.Len() > 0 && stdout.Len() < 3000 {
 			var _stdout []string
 			for _, line := range strings.Split(stdout.String(), "\n") {
 				// Skip empty lines
