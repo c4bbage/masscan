@@ -119,7 +119,8 @@ func (s *Scanner) Run() (result *tools.MasscanResult, warnings []string, err err
 		// Parse masscan JSON ouput
 		// TODO:当目标为负载均衡或者其他映射设备时，可能会出现全端口开放的情况，真实端口藏于其中。拍脑袋三千遍，没找到解决方案。
 		// TODO:担心会漏掉重要的服务 3000 要求优化掉：大于3000 用nmap来识别？
-		if stdout.Len() > 0 && stdout.Len() < 3000 {
+		// 改成10000 就是干
+		if stdout.Len() > 0 && stdout.Len() < 10000 {
 			var _stdout []string
 			for _, line := range strings.Split(stdout.String(), "\n") {
 				// Skip empty lines
